@@ -1,0 +1,238 @@
+/*
+ *
+ *	we are using the following indexing system:
+ *
+ *
+ *			*	0	1	2	3	4	5	... (x index)
+ *			0	x	x	x	x	x	x
+ *			1	x	x	x	x	x	x
+ *			2	x	x	x	x	x	x
+ *			3	x	x	x	x	x	x
+ *			4	x	x	x	x	x	x
+ *			5	x	x	x	x	x	x
+ *			.
+ *			.
+ *			.
+ *			(y index)
+ *
+ *
+ *
+ */
+// variable to check if a food element is already on the matrix
+var foodSpawn = false;
+
+// Feature: Implement Food
+// Implemented By: Aditya Sharma (B00827775)
+// Learned: How to retrieve an element that was created dynamically from the server side.
+//			How to add a class element to a div element dynamically using javascript. 
+
+function Food(){
+    // generate valid coordinates within the matrix.
+    var i = Math.floor(Math.random() * 30);
+    var j = Math.floor(Math.random() * 30);
+    // if food is not already on the matrix.
+    if(!foodSpawn){
+        foodSpawn = true;
+        document.getElementById(i+' - '+j).classList.add("food");
+    }
+}
+
+class SnakeBlock {
+	constructor(x, y){ // position coordinates
+		this.x = x;
+		this.y = y;
+		this.next = null;
+	}
+	
+	setNext(next){
+		this.next = next;
+	}
+}
+
+class Snake {
+	constructor(head, tail){
+		this.head = head;
+		this.tail = tail;
+		this.speed = 5; // default speed is 5; range 1 - 10
+		this.dir = "right"; // default direction is to the right; can also be "left", "up", or "down"; may be changed by control
+		this.dirChanged = false; // marks whether the direction has been reset before next move to prevent multiple direction changes in a single move
+		this.nextDir = null; // records the unfulfilled direction change in short time; hold off and fulfill in next move
+	}
+	
+	move(){ // moves one step forward
+		this.dirChanged = false;
+		let iterBlock = this.head;
+		let x = iterBlock.x;
+		let y = iterBlock.y;
+		switch (this.dir) {
+			case "right":
+					iterBlock.x++;
+				break;
+			case "left":
+					iterBlock.x--;
+				break;
+			case "up":
+					iterBlock.y--;
+				break;
+			case "down":
+					iterBlock.y++;
+				break;
+			default:
+				break;
+		}
+		while (iterBlock.next) {
+			iterBlock = iterBlock.next;
+			let xTemp = iterBlock.x;
+			let yTemp = iterBlock.y;
+			iterBlock.x = x;
+			iterBlock.y = y;
+			x = xTemp;
+			y = yTemp;
+		}
+		if(this.nextDir){
+			this.dir = this.nextDir;
+			this.dirChanged = true;
+			this.nextDir = null;
+		}
+	}
+	
+	changeDir(dir){ // changes direction
+		this.dir = dir;
+	}
+	
+	toString(){ // returns positions of all snake blocks from head to tail
+		let string = "";
+		let iterBlock = this.head;
+		while (iterBlock) {
+			string += "(" + iterBlock.x + "," + iterBlock.y + ")";
+			iterBlock = iterBlock.next;
+			if(iterBlock){
+				string += "<-"
+			}
+		}
+		return string;
+	}
+	
+	display(){
+		document.querySelectorAll(".columns").forEach(elem =>{
+			elem.style.background = "black";
+		});
+		document.querySelectorAll(".food").forEach(elem =>{
+			elem.style.background = "white";
+		});
+		let iterBlock = this.head;
+		// If Snake touches boundary, Game over.
+		while (iterBlock) {
+			if(document.getElementById(iterBlock.y + " - " + iterBlock.x)==null){
+				document.getElementById("over").innerHTML = "Oops, Game Over!"; 
+				break;
+			}
+			else{
+				document.getElementById(iterBlock.y + " - " + iterBlock.x).style.background = "green";
+			}
+			// If snake eats food, spawn another food.
+			if(document.getElementById(iterBlock.y + " - " + iterBlock.x).classList.contains("food")){
+				document.getElementById(iterBlock.y + " - " + iterBlock.x).classList.remove("food");
+				document.getElementById(iterBlock.y + " - " + iterBlock.x).classList.add("columns");
+				foodSpawn = false;
+				Food();
+			}
+			iterBlock = iterBlock.next;
+		}
+	}
+}
+
+function initSnake(x, y, l) { // x, y: head position; l: initial length
+	head = new SnakeBlock(x, y);
+	tail = head;
+	for(i = 1; i < l; i++){
+		tail.setNext(new SnakeBlock(x - i, y));
+		tail = tail.next;
+	}
+	return new Snake(head, tail);
+}
+
+async function init(){
+	// Spawning first food 
+	Food();
+	var snake = initSnake(15, 15, 3);
+	document.addEventListener("keydown", function (e) {
+		if(e.keyCode == 33 && snake.speed < 11){
+			snake.speed++;
+		}
+		else if(e.keyCode == 34 && snake.speed > 0){
+			snake.speed--;
+		}
+		if(!snake.dirChanged){
+			switch (e.keyCode) {
+				case 37:
+				case 65:
+					if(snake.dir == "up" || snake.dir == "down"){
+						snake.dir = "left";
+						snake.dirChanged = true;
+					}
+					break;
+				case 38:
+				case 87:
+					if(snake.dir == "left" || snake.dir == "right"){
+						snake.dir = "up";
+						snake.dirChanged = true;
+					}
+					break;
+				case 39:
+				case 68:
+					if(snake.dir == "up" || snake.dir == "down"){
+						snake.dir = "right";
+						snake.dirChanged = true;
+					}
+					break;
+				case 40:
+				case 83:
+					if(snake.dir == "left" || snake.dir == "right"){
+						snake.dir = "down";
+						snake.dirChanged = true;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		else if(!snake.nextDir){ // records the unfulfilled direction change in short time
+			switch (e.keyCode) {
+				case 37:
+				case 65:
+					if(snake.dir == "up" || snake.dir == "down"){
+						snake.nextDir = "left";
+					}
+					break;
+				case 38:
+				case 87:
+					if(snake.dir == "left" || snake.dir == "right"){
+						snake.nextDir = "up";
+					}
+					break;
+				case 39:
+				case 68:
+					if(snake.dir == "up" || snake.dir == "down"){
+						snake.nextDir = "right";
+					}
+					break;
+				case 40:
+				case 83:
+					if(snake.dir == "left" || snake.dir == "right"){
+						snake.nextDir = "down";
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}, false);
+	snake.display();
+	while (1) {
+		await new Promise(resolve => setTimeout(resolve, 150 - 10*snake.speed));
+		snake.move();
+		snake.display();
+	}
+}
+

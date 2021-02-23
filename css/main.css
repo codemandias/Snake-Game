@@ -1,0 +1,30 @@
+h3{
+    text-align: center;
+    font-family:'Segoe UI Semibold', sans-serif;
+}
+
+body{
+    background-color:lightgreen;
+}
+
+#over{
+    font-family:'Segoe UI Semibold', sans-serif;
+    color: indigo;
+}
+
+td {
+    width: 15px;
+    height: 15px;
+    border: 0;
+}
+
+.columns {
+    background-color: black;
+}
+
+.board table {
+    
+    margin-left: 35%;
+    margin-top: 3%;
+}
+ 
