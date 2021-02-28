@@ -1,5 +1,5 @@
 <!-- 
-    Displays the leader board for the game 
+    Feature: Displays the leader board for the game 
     Implementor: Aks Chunara
 -->
 <h2>Leaderboard</h2>

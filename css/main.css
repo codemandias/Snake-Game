@@ -1,4 +1,4 @@
-h3{
+h3, h4 {
     text-align: center;
     font-family:'Segoe UI Semibold', sans-serif;
 }
@@ -7,9 +7,17 @@ body{
     background-color:lightgreen;
 }
 
-#over{
+#screen, #board {
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#screen > * {
     font-family:'Segoe UI Semibold', sans-serif;
-    color: indigo;
+    color: green;
 }
 
 td {
@@ -22,8 +30,7 @@ td {
     background-color: black;
 }
 
-.board table {
-    
+.board table, #screen {
     margin-left: 35%;
     margin-top: 3%;
 }

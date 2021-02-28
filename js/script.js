@@ -104,13 +104,13 @@ class Snake {
 		while(iterBlock.next){
 			iterBlock = iterBlock.next;
 			if(this.head.x == iterBlock.x && this.head.y == iterBlock.y){
-				document.getElementById("over").innerHTML = "Oops, Game Over!"; 
+				location.replace("index.php?gameover=1&finalScore=".concat(score));
 				exit;
 			}
 		}
 		// If Snake touches boundary, Game over.
 		if(document.getElementById(this.head.y + " - " + this.head.x)==null){
-			document.getElementById("over").innerHTML = "Oops, Game Over!"; 
+			location.replace("index.php?gameover=1&finalScore=".concat(score));
 		}
 		// If snake eats food, spawn another food.
 		if(document.getElementById(this.head.y + " - " + this.head.x).classList.contains("food")){
