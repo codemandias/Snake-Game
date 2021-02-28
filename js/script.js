@@ -21,6 +21,8 @@
 // variable to check if a food element is already on the matrix
 var foodSpawn = false;
 
+var snake;
+
 // Feature: Implement Food
 // Implemented By: Aditya Sharma (B00827775)
 // Learned: How to retrieve an element that was created dynamically from the server side.
@@ -37,6 +39,9 @@ function Food(){
     }
 }
 
+// Feature: SnakeBlocks are elements that constitute a Snake;
+// Implemented By: Qiujian Yao (B00793637);
+// Learned: Object-Oriented Programming.
 class SnakeBlock {
 	constructor(x, y){ // position coordinates
 		this.x = x;
@@ -49,6 +54,9 @@ class SnakeBlock {
 	}
 }
 
+// Feature: Implementing the Snake Object and link it to HTML;
+// Implemented By: Qiujian Yao (B00793637);
+// Learned: Object-Oriented Programming.
 class Snake {
 	constructor(head, tail){
 		this.head = head;
@@ -80,14 +88,39 @@ class Snake {
 			default:
 				break;
 		}
-		while (iterBlock.next) {
+		if(!(iterBlock.next.x == x && iterBlock.next.y == y)){
+			while (iterBlock.next) {
+				iterBlock = iterBlock.next;
+				let xTemp = iterBlock.x;
+				let yTemp = iterBlock.y;
+				iterBlock.x = x;
+				iterBlock.y = y;
+				x = xTemp;
+				y = yTemp;
+			}
+		}
+		// If Snake touches its body, Game over.
+		iterBlock = this.head;
+		while(iterBlock.next){
 			iterBlock = iterBlock.next;
-			let xTemp = iterBlock.x;
-			let yTemp = iterBlock.y;
-			iterBlock.x = x;
-			iterBlock.y = y;
-			x = xTemp;
-			y = yTemp;
+			if(this.head.x == iterBlock.x && this.head.y == iterBlock.y){
+				document.getElementById("over").innerHTML = "Oops, Game Over!"; 
+				exit;
+			}
+		}
+		// If Snake touches boundary, Game over.
+		if(document.getElementById(this.head.y + " - " + this.head.x)==null){
+			document.getElementById("over").innerHTML = "Oops, Game Over!"; 
+		}
+		// If snake eats food, spawn another food.
+		if(document.getElementById(this.head.y + " - " + this.head.x).classList.contains("food")){
+			document.getElementById(this.head.y + " - " + this.head.x).classList.remove("food");
+			document.getElementById(this.head.y + " - " + this.head.x).classList.add("columns");
+			let newBlock = new SnakeBlock(this.head.x, this.head.y);
+			newBlock.setNext(this.head.next);
+			this.head.setNext(newBlock);
+			foodSpawn = false;
+			Food();
 		}
 		if(this.nextDir){
 			this.dir = this.nextDir;
@@ -121,27 +154,17 @@ class Snake {
 			elem.style.background = "white";
 		});
 		let iterBlock = this.head;
-		// If Snake touches boundary, Game over.
+		
 		while (iterBlock) {
-			if(document.getElementById(iterBlock.y + " - " + iterBlock.x)==null){
-				document.getElementById("over").innerHTML = "Oops, Game Over!"; 
-				break;
-			}
-			else{
-				document.getElementById(iterBlock.y + " - " + iterBlock.x).style.background = "green";
-			}
-			// If snake eats food, spawn another food.
-			if(document.getElementById(iterBlock.y + " - " + iterBlock.x).classList.contains("food")){
-				document.getElementById(iterBlock.y + " - " + iterBlock.x).classList.remove("food");
-				document.getElementById(iterBlock.y + " - " + iterBlock.x).classList.add("columns");
-				foodSpawn = false;
-				Food();
-			}
+			document.getElementById(iterBlock.y + " - " + iterBlock.x).style.background = "green";
 			iterBlock = iterBlock.next;
 		}
 	}
 }
 
+// Feature: First constructing multiple SnakeBlocks and connecting them as link list and then using them to create Snake;
+// Implemented By: Qiujian Yao (B00793637);
+// Learned: Object-Oriented Programming.
 function initSnake(x, y, l) { // x, y: head position; l: initial length
 	head = new SnakeBlock(x, y);
 	tail = head;
@@ -152,10 +175,10 @@ function initSnake(x, y, l) { // x, y: head position; l: initial length
 	return new Snake(head, tail);
 }
 
-async function init(){
-	// Spawning first food 
-	Food();
-	var snake = initSnake(15, 15, 3);
+// Feature: Making the Snake controllable by arrow keys and w/a/s/d for direction and PAGE UP/ PAGE DOWN for speed;
+// Implemented By: Qiujian Yao (B00793637);
+// Learned: JavaScript keyboard control.
+function initControl(snake) {
 	document.addEventListener("keydown", function (e) {
 		if(e.keyCode == 33 && snake.speed < 11){
 			snake.speed++;
@@ -228,6 +251,13 @@ async function init(){
 			}
 		}
 	}, false);
+}
+
+async function init(){
+	// Spawning first food 
+	Food();
+	snake = initSnake(15, 15, 3);
+	initControl(snake);
 	snake.display();
 	while (1) {
 		await new Promise(resolve => setTimeout(resolve, 150 - 10*snake.speed));
