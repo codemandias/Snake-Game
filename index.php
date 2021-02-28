@@ -1,34 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Group Assignment 1</title>
-    <link type="text/css" rel="stylesheet" href="css/main.css">
-    <script type="text/javascript" src="js/script.js"></script>
-</head>
-<body onload="init()">
-<h3>Snake Game</h3>
-<div id="boundary">
-<h3 id="over"></h3>
-<div class='board'>
-
 <?php
-// Feature: Implement Game Board/Boundary
-// Implemented By: Aditya Sharma (B00827775)
-// Learned: How to effectively output a matrix of rows and columnns by sending it through sever side
-//			using php with valid id names/numbers. 
+/*
+ * CSCI 2170: ONLINE EDITION, WINTER 2021
+ * STARTER CODE FOR ASSIGNMENT 2
+ * 
+ * This code was customized by Dr. Raghav V. Sampangi (raghav@cs.dal.ca)
+ * using the code from the Bootstrap "Album" example available at:
+ * https://getbootstrap.com/docs/5.0/examples/album/ (accessed 11 Jan 2021)
+ * (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors)
+ * The Album example is (c) Bootstrap, and is free to download and customize.
+ *
+ */
 
-echo "<table style='border-collapse: collapse;'>";
-for($i=0;$i<30;$i++){
-	echo "<tr id='$i' class='rows'>";
-	for ($j = 0; $j < 30; $j++) {
-		echo "<td id='$i - $j' class='columns'></td>";
-	}
-	echo "</tr>";
-}
-echo "</table>";
+	//Header
+	require "includes/header.php"; 
+	//Connects Database
+	require_once "./db/db.php";
 ?>
+<main id="pg-main-content">
+    <section class="space-above-below">
+        <?php
+            require "includes/login.php";
+        ?>
+    </section>
+</main>
 
-</div>
-</div>
-</body>
-</html>
+<?php 
+	//Footer
+	require "includes/footer.php"; 
+?>
