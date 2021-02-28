@@ -9,8 +9,8 @@
     $result = $dbconnection->query($querySQL);
 
     if ($result->num_rows > 0) {
-        echo "<table class='table table-dark'>
-                <thead>
+        echo "<table class='table'>
+                <thead class='thead-dark'>
                     <tr>
                         <th scope='col'>Rank</th>
                         <th scope='col'>Username</th>
@@ -24,18 +24,18 @@
             $highscore = $row['high_score'];
 
             if($_SESSION['userID'] == $userID){
-                echo "<thead class="thead-light">
+                echo "<thead class='thead-light'>
                         <tr>
-                        <th scope="col">$rank</th>
-                        <th scope="col">$username</th>
-                        <th scope="col">$highscore</th>
+                        <th scope='col'>$rank</th>
+                        <th scope='col'>$username</th>
+                        <th scope='col'>$highscore</th>
                         </tr>
                     </thead>";
             } else{
                 echo "<tr>
-                        <th scope="row">$rank</td>
-                        <td>$username</td>
-                        <td>$highscore</td>
+                        <td scope='col'>$rank</td>
+                        <td scope='col'>$username</td>
+                        <td scope='col'>$highscore</td>
                     </tr>";
             }
             $rank++;

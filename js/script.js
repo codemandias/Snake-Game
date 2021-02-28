@@ -20,7 +20,7 @@
  */
 // variable to check if a food element is already on the matrix
 var foodSpawn = false;
-
+var score = 0;
 var snake;
 
 // Feature: Implement Food
@@ -120,6 +120,8 @@ class Snake {
 			newBlock.setNext(this.head.next);
 			this.head.setNext(newBlock);
 			foodSpawn = false;
+			score+=10;
+			document.getElementById("score").innerHTML ="Score: "+score;
 			Food();
 		}
 		if(this.nextDir){

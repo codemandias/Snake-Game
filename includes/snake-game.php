@@ -1,6 +1,7 @@
-<body onload="init()">
+<body">
     <h3>Snake Game</h3>
         <div id="boundary">
+        <h3 id="score"></h3>
         <h3 id="over"></h3>
         <div class='board'>
             <?php
@@ -19,6 +20,7 @@
             }
             echo "</table>";
             ?>
+            <button onclick="init()">Start Game</button>
         </div>
     </div>
 </body>
