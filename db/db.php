@@ -1,10 +1,10 @@
 <!-- Connects the database -->
 
 <?php
-	$hostservername = "localhost";
-	$username = "root";
-	$password = "root";
-	$dbname = "GroupAssignmentDB";
+	$hostservername = "db.cs.dal.ca";
+	$username = "chunara";
+	$password = "2amR2aiY8STtTxJKbkGKvofho";
+	$dbname = "chunara";
 
 	$dbconnection = new mysqli($hostservername, $username, $password, $dbname);
 
