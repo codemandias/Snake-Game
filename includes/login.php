@@ -29,7 +29,7 @@
             <!-- Password -->
             <div class='row'>
                 <div class='col'>
-                    <label for="password">Password:</label>
+                    <label for="password">Password:&nbsp</label>
                     <input id="password" type="password" name="password">
                     <?php
                         if(isset($_GET['passError'])){

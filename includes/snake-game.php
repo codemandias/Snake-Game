@@ -6,17 +6,19 @@
         echo ">";
     }
 ?>
-    <h3>Snake Game</h3>
     <div id="boundary">
-        <!-- 
-            Feature: Displays the current score of the player
-            Implemented By: Aditya Sharma (B00827775)
-        -->
-        <h3 id="score">0</h3>
+        <div id="scoreBoard">
+            <h3 id="gameTitle">Snake Game</h3>
+            <!-- 
+                Feature: Displays the current score of the player
+                Implemented By: Aditya Sharma (B00827775)
+            -->
+            <h3 id="score">0</h3>
+        </div>
         <div class='board'>
         <!-- 
             Feature: Displays the gameover and intro screen and synchs score with database 
-            Implementor: Aks Chunara
+            Implementor: Aks Chunara (B00843788)
         -->
         <?php
             //Checks if game is not over and has started
