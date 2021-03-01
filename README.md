@@ -23,7 +23,7 @@
 
 # INSTRUCTIONS
   1. Create an account (Sign-up) or log-in to access the snake game.
-  2. Use arrow keys to control the movement of the snake.
+  2. Use arrow keys or W/A/S/D to control the movement of the snake and PAGE UP/PAGE DOWN keys to adjust speed.
   3. Consume food to grow in size.
   4. Avoid hitting the boundary or the snake itself.
   5. Try to get the highest score.
