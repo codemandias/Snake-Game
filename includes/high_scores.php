@@ -1,6 +1,6 @@
 <!-- 
     Feature: Displays the leader board for the game 
-    Implementor: Aks Chunara
+    Implementor: Aks Chunara (B00843788)
 -->
 <div id="high_scores">
     <h3>Leaderboard</h3>
