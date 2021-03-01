@@ -23,7 +23,7 @@ var foodSpawn = false;
 var score = 0;
 var snake;
 
-// Feature: Implement Food
+// Feature: Implement Food and Score functionality
 // Implemented By: Aditya Sharma (B00827775)
 // Learned: How to retrieve an element that was created dynamically from the server side.
 //			How to add a class element to a div element dynamically using javascript. 
@@ -112,6 +112,11 @@ class Snake {
 		if(document.getElementById(this.head.y + " - " + this.head.x)==null){
 			location.replace("index.php?gameover=1&finalScore=".concat(score));
 		}
+
+		// Feature 1: Display food and detect if food is being eaten by the snake 
+		// Feature 1: Store score upon food consumed and display dynmanically. 
+		// Implemented By: Aditya Sharma (B00827775);
+
 		// If snake eats food, spawn another food.
 		if(document.getElementById(this.head.y + " - " + this.head.x).classList.contains("food")){
 			document.getElementById(this.head.y + " - " + this.head.x).classList.remove("food");
