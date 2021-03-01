@@ -30,11 +30,32 @@
   6. Enjoy! Don't forget to logout after you are done.
 
 # CITATIONS
-  1. KeyboardEvent https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
-  2. https://www.php.net/manual/en/function.hash.php
-  3. http://kejser.org/exploring-hash-functions-in-sql-server/#:~:text=SQL%20Server%20exposes%20a%20series,also%20find%20the%20HASHBYTES%20function.
-  4. https://www.php.net/manual/en/function.session-regenerate-id.php
-  5. https://www.php.net/manual/en/function.session-destroy.php
-  6. https://getbootstrap.com/docs/5.0/utilities/borders/#border-color
-  7. https://getbootstrap.com/docs/5.0/content/tables/
+  1. The starter framework code was customized by Dr. Raghav V. Sampangi (raghav@cs.dal.ca), using the code from the Bootstrap "Album"
+   example available at: https://getbootstrap.com/docs/5.0/examples/album/ (accessed 17 Jan 2021)
+   (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors)
+   The Album example is (c) Bootstrap, and is free to download and customize
+
+  2. KeyboardEvent https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
+
+  3. The hash function from php was referenced from the code from PHP website "hash" example
+    available at: https://www.php.net/manual/en/function.hash.php (accessed 26 Feb 2021)
+    The "hash" example is (c) PHP Group, and is free for reference
+
+  4. The session-regenerate-id function from php was referenced from the code from PHP website "session-regenerate-id" example
+    available at: https://www.php.net/manual/en/function.session-regenerate-id.php (accessed 26 Feb 2021)
+    The "session-regenerate-id" example is (c) PHP Group, and is free for reference
+
+  5. The session-destroy code from php was used from the code from PHP website "session-destroy" example
+    available at: https://www.php.net/manual/en/function.session-destroy.php (accessed 26 Feb 2021)
+    The "session-destroy" example is (c) PHP Group, and is free for reference and to use
+
+  6. The border-color was referenced from the code from the Bootstrap "Border Color" example 
+   available at: https://getbootstrap.com/docs/5.0/utilities/borders/#border-color (accessed 26 Feb 2021) 
+   (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors) 
+   The "Border Color" example is (c) Bootstrap, and is free for reference and customization
+
+  7. The tables was referenced from the code from the Bootstrap "Tables" example 
+   available at: https://getbootstrap.com/docs/5.0/content/tables/ (accessed 26 Feb 2021) 
+   (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors) 
+   The "Tables" example is (c) Bootstrap, and is free for reference and customization
 

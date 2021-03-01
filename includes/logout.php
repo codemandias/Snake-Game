@@ -1,10 +1,8 @@
 <?php
 	/*
-	 * Logout script: session destroy functionality implemented based on 
-	 * the script available on PHP.net
-	 * URL: https://www.php.net/manual/en/function.session-destroy.php
-	 * Date accessed: 10 Feb 2021
-	 * Author: PHP.net contributors
+	 * The session-destroy code from php was used from the code from PHP website "session-destroy" example
+	 * available at: https://www.php.net/manual/en/function.session-destroy.php (accessed 26 Feb 2021)
+	 * The "session-destroy" example is (c) PHP Group, and is free for reference and to use
 	 */
 
 	// Initialize the session.

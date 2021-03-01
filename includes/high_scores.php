@@ -11,6 +11,15 @@
             $result = $dbconnection->query($querySQL);
 
             if ($result->num_rows > 0) {
+                //6. The border-color was referenced from the code from the Bootstrap "Border Color" example 
+                //   available at: https://getbootstrap.com/docs/5.0/utilities/borders/#border-color (accessed 26 Feb 2021) 
+                //   (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors) 
+                //   The "Border Color" example is (c) Bootstrap, and is free for reference and customization
+                
+                //7. The tables was referenced from the code from the Bootstrap "Tables" example 
+                //   available at: https://getbootstrap.com/docs/5.0/content/tables/ (accessed 26 Feb 2021) 
+                //   (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors) 
+                //   The "Tables" example is (c) Bootstrap, and is free for reference and customization
                 echo "<table class='table table-bordered table-dark border-dark'>
                         <thead>
                             <tr>
