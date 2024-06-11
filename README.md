@@ -59,3 +59,6 @@
    (Created by: Mark Otto, Jacob Thornton, and Bootstrap contributors) 
    The "Tables" example is (c) Bootstrap, and is free for reference and customization
 
+# URL
+Aditya's website https://web.cs.dal.ca/~aditya/GA1-Batman1/
+Aks's website https://web.cs.dal.ca/~chunara/test/csci-2170-group-assignment-1

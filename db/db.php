@@ -1,10 +1,17 @@
 <!-- Connects the database -->
 
 <?php
-	$hostservername = "db.cs.dal.ca";
-	$username = "chunara";
-	$password = "2amR2aiY8STtTxJKbkGKvofho";
-	$dbname = "chunara";
+	// Server host details for my website
+	// Same username and password can be used to play the game
+	// $hostservername = "db.cs.dal.ca";
+	// $username = "aditya";
+	// $password = "XdEZbZP99WtgrBVUE35A5C4dx";
+	// $dbname = "aditya";
+	
+	$hostservername = "localhost";
+	$username = "root";
+	$password = "root";
+	$dbname = "GroupAssignmentDB";
 
 	$dbconnection = new mysqli($hostservername, $username, $password, $dbname);
 
